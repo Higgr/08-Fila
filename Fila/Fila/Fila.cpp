@@ -48,7 +48,7 @@ void menu()
 			break;
 		case 3: remove();
 			break;
-		case 4:
+		case 4: exibir();
 			break;
 		case 5:
 			return;
@@ -90,9 +90,18 @@ void insere()
 
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
+	
 	novo->prox = NULL;
+
+	if (inicio == NULL) {
 	inicio = novo;
-	fim = NULL;
+	fim = novo;
+	}
+	else {
+		fim->prox = novo;
+		fim = novo;
+
+}
 
 
 
@@ -105,15 +114,18 @@ void remove()
 		return;
 	}
 	NO* aux = inicio;
+
 	inicio = inicio->prox;
+
+	if (inicio == NULL){
+		fim = NULL;
+	}
 	free(aux);
 
 }
 
 void exibir()
 {
-	int valor;
-
 	if (inicio == NULL) {
 		cout << "Lista vazia\n";
 		return;
