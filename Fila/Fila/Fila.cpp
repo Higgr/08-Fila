@@ -15,6 +15,7 @@ void menu();
 void inicializar();
 void insere();
 void remove();
+void exibir();
 //--------------------------
 
 
@@ -26,14 +27,15 @@ int main()
 void menu()
 {
 	int op = 0;
-	while (op != 4) {
+	while (op != 5) {
 		system("cls"); // somente no windows
 		cout << "Menu Fila";
 		cout << endl << endl;
 		cout << "1 - Inicializar Fila \n";
 		cout << "2 - Inserir elemento \n";
 		cout << "3 - Remover elemento  \n";
-		cout << "4 - Sair \n";
+		cout << "4 - Exibir \n";
+		cout << "5 - Sair \n";
 
 		cout << "Opcao: ";
 		cin >> op;
@@ -47,6 +49,8 @@ void menu()
 		case 3: remove();
 			break;
 		case 4:
+			break;
+		case 5:
 			return;
 		default:
 			break;
@@ -87,14 +91,38 @@ void insere()
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
+	inicio = novo;
+	fim = NULL;
+
 
 
 }
 
 void remove()
 {
-
-
+	if (inicio == NULL) {
+		cout << "Fila Vazia!\n";
+		return;
+	}
+	NO* aux = inicio;
+	inicio = inicio->prox;
+	free(aux);
 
 }
 
+void exibir()
+{
+	int valor;
+
+	if (inicio == NULL) {
+		cout << "Lista vazia\n";
+		return;
+	}
+
+	NO* aux = inicio;
+
+	while (aux != NULL) {
+		cout << aux->valor << endl;
+		aux = aux->prox;
+	}
+}
